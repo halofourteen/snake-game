@@ -121,6 +121,19 @@ extension GameScene: SKPhysicsContactDelegate {
             snake.addBodyPart()
             apple?.removeFromParent()
             createApple()
+        case CollisionCategories.EdgeBody:
+            scene?.removeAllChildren()
+            
+            let counterClockwisePosition = CGPoint(x: frame.minX + 30, y: frame.minY + 30)
+            let clockwisePosition = CGPoint(x: frame.maxX - 80, y: frame.minY + 30)
+                       
+            addRotationButton(name: counterClockWiseButtonName, position: counterClockwisePosition)
+            addRotationButton(name: clockWiseButtonName, position: clockwisePosition)
+                       
+            snake = Snake(position: CGPoint(x: frame.midX, y: frame.midY))
+            addChild(snake)
+            createApple()
+            
         default:
             break
         }
